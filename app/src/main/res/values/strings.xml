@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BookFinder</string>
+    <string name="hint">"Key word "</string>
+    <string name="btnFind">Find</string>
 </resources>
