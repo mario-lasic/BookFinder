@@ -7,17 +7,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Utils {
 
     public static final String LOG_TAG = Utils.class.getSimpleName();
+
 
     public static List<Book> fetchBookData(String mUrl) {
         URL url = createUrl(mUrl);
@@ -32,6 +36,7 @@ public class Utils {
         return book;
     }
 
+    // Parsing json
     private static List<Book> extractBook(String jsonResponse) {
         if(TextUtils.isEmpty(jsonResponse)){
             return null;
@@ -66,7 +71,7 @@ public class Utils {
 
         return books;
     }
-
+    // Connecting with http
     private static String makeHttpRequest(URL url) throws IOException {
         String jsonResponse = null;
 
@@ -103,8 +108,18 @@ public class Utils {
         return jsonResponse;
     }
 
-    private static String readFromStream(InputStream inputStream) {
-        return null;
+    private static String readFromStream(InputStream inputStream) throws IOException {
+        StringBuilder output = new StringBuilder();
+        if(inputStream != null){
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
+            BufferedReader reader = new BufferedReader(inputStreamReader);
+            String line = reader.readLine();
+            while (line != null){
+                output.append(line);
+                line = reader.readLine();
+            }
+        }
+        return output.toString();
     }
 
     private static URL createUrl(String mUrl) {

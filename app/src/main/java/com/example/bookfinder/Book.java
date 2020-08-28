@@ -8,6 +8,7 @@ public class Book {
     private String mPreviewLink;
     private String mDescription;
 
+    //Constructor
     public Book(String title, String author, String imgLink, String previewLink, String description) {
         mTitle = title;
         mAuthor = author;
@@ -15,7 +16,7 @@ public class Book {
         mPreviewLink = previewLink;
         mDescription = description;
     }
-
+    // Setters and getters
     public String getTitle() {
         return mTitle;
     }
