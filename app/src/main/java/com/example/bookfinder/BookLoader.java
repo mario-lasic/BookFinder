@@ -29,7 +29,7 @@ public class BookLoader extends AsyncTaskLoader<List<Book>> {
         return null;
         }
 
-        List<Book> book = Utils.fatchBookData (mUrl);
+        List<Book> book = Utils.fetchBookData(mUrl);
         return book;
     }
 }
