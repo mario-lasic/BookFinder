@@ -6,16 +6,22 @@ public class Book {
     private String mAuthor;
     private String mImgLink;
     private String mPreviewLink;
-    private String mDescription;
 
     //Constructor
-    public Book(String title, String author, String imgLink, String previewLink, String description) {
+
+    public Book(String title, String author, String imgLink, String previewLink) {
         mTitle = title;
         mAuthor = author;
         mImgLink = imgLink;
         mPreviewLink = previewLink;
-        mDescription = description;
     }
+
+    public Book(String title, String author, String previewLink) {
+        mTitle = title;
+        mAuthor = author;
+        mPreviewLink = previewLink;
+    }
+
     // Setters and getters
     public String getTitle() {
         return mTitle;
@@ -49,11 +55,5 @@ public class Book {
         mPreviewLink = previewLink;
     }
 
-    public String getDescription() {
-        return mDescription;
-    }
 
-    public void setDescription(String description) {
-        mDescription = description;
-    }
 }

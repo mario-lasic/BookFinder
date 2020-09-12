@@ -11,22 +11,37 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListViewActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Book>> {
     private ListView booksListView;
-    private static final String book_url = "https://www.googleapis.com/books/v1/volumes?q=horror";
+    private String book_url = "", book_url2;
     private BookAdapter mBookAdapter;
+    private Button btnMore;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
         booksListView = (ListView) findViewById(R.id.list);
-        LoaderManager loaderManager = getSupportLoaderManager();
+        handleIntent();
+    }
+
+    private void handleIntent() {
+        Intent intent = getIntent();
+        String key = intent.getStringExtra("key").toLowerCase();
+        if (key.contains(" ")){
+            key = key.replaceAll(" ", "+");
+        }
+        String base_url = "https://www.googleapis.com/books/v1/volumes?q=";
+        book_url = base_url + key;
+        final LoaderManager loaderManager = getSupportLoaderManager();
         loaderManager.initLoader(1,null, this);
         mBookAdapter = new BookAdapter(this, new ArrayList<Book>());
     }

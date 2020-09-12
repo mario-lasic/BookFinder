@@ -53,16 +53,31 @@ public class Utils {
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject currentBook = jsonArray.getJSONObject(i);
                 JSONObject volumeInfo = currentBook.getJSONObject("volumeInfo");
-                JSONObject img = volumeInfo.getJSONObject("imageLinks");
 
+                String link = "";
+                String author = "";
                 String title = volumeInfo.getString("title");
-                String author = volumeInfo.getString("authors");
-                String imgLink = img.getString("smallThumbnail");
+                if(volumeInfo.has("authors")) {
+                    author = volumeInfo.getString("authors");
+                }
+                if(volumeInfo.has("imageLinks")){
+                    JSONObject img = volumeInfo.optJSONObject("imageLinks");
+                    String imgLink = img.getString("thumbnail");
+                    //adding S to http
+                    StringBuilder stringBuilder = new StringBuilder(imgLink);
+                    stringBuilder.insert(4,"s");
+                    link = stringBuilder.toString();}
                 String preview = volumeInfo.getString("previewLink");
-                String description = volumeInfo.getString("description");
+                //String genre = volumeInfo.getString("categories");*/
 
-                Book book = new Book(title,author,imgLink,preview,description);
-                books.add(book);
+                author = author.replaceAll("[^a-z ^A-Z ^,]", "");
+
+
+
+
+
+                    Book book = new Book(title,author,link,preview);
+                    books.add(book);
             }
 
         } catch (JSONException e) {

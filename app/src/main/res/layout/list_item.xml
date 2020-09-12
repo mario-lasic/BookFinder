@@ -4,34 +4,43 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:minHeight="88dp"
-    android:weightSum="2">
+    android:weightSum="2"
+    android:padding="10dp">
 
     <ImageView
+        android:padding="10dp"
         android:id="@+id/ivThumbnail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxHeight="88dp"/>
+        android:maxHeight="120dp"
+        android:layout_gravity="center"/>
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="2"
         android:orientation="vertical"
-        android:layout_marginLeft="20dp">
+        android:layout_marginLeft="20dp"
+        android:weightSum="4">
 
         <TextView
             android:id="@+id/tvAuthor"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="italic"/>
+            android:layout_height="0dp"
+            android:textColor="@android:color/darker_gray"
+            android:textStyle="italic"
+            android:layout_weight="1"
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"/>
+            android:layout_height="0dp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:textAppearance="@android:style/TextAppearance.Large"/>
 
     </LinearLayout>
 
